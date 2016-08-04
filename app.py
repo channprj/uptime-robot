@@ -13,24 +13,20 @@ def index():
 
 @app.route('/signup')
 def sign_up():
-    return 'WIP'
+    return init.test_print()
 
 @app.route('/signin')
 def sign_in():
-    return 'WIP'
+    return init.test_print()
 
 @app.route('/dashboard')
 def dashboard():
-    return 'WIP'
-
-@app.route('/test')
-def http_test():
     return init.test_print()
 
 # error handler
 @app.errorhandler(404)
 def page_not_found(e):
-        return render_template('404.html'), 404
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
