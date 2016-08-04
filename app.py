@@ -1,6 +1,6 @@
-#!flask/bin/python
+import sys
+from module import test
 from flask import Flask
-import test
 
 app = Flask(__name__)
 
