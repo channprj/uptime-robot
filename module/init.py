@@ -6,6 +6,8 @@ import urllib
 import models
 import re
 
+import database
+
 class HTTPChecker(object):
     """docstring for HTTPChecker"""
     def __init__(self, arg):

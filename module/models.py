@@ -1,6 +1,7 @@
 # models.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from database import Base
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://test.db'
@@ -15,7 +16,8 @@ db = SQLAlchemy(app)
 ### PickleType: stores a pickled Python object
 ### LargeBinary: stores large arbitrary binary data
 
-class User(db.Model):
+class User(Base):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email_id = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(100))
@@ -25,7 +27,15 @@ class User(db.Model):
     monitor = db.relationship('Monitor', backref='monitor', lazy='dynamic')
     alertlog = db.relationship('AlertLog', backref='alertlog', lazy='dynamic')
 
-class Monitor(db.Model):
+    def __init__(self, name=None, email_id=None, password=None, phone=None, is_admin=None):
+        self.name = name
+        self.email_id = email_id
+        self.password = password
+        self.phone = phone
+        self.is_admin = is_admin
+
+class Monitor(Base):
+    __tablename__ = 'monitor'
     id = db.Column(db.Integer, primary_key=True)
     event = db.Column(db.Boolean)
     label = db.Column(db.String(20))
@@ -34,12 +44,14 @@ class Monitor(db.Model):
     monitor_log = db.relationship('MonitorLog', backref='monitor_log', lazy='dynamic')
     alert_log = db.relationship('AlertLog', backref='alert_log', lazy='dynamic')
 
-class MonitorLog(db.Model):
+class MonitorLog(Base):
+    __tablename__ = 'monitor_log'
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Integer)
     monitor_id = db.Column(db.Integer, db.ForeignKey('monitor.id'))
 
-class AlertLog(db.Model):
+class AlertLog(Base):
+    __tablename__ = 'alert_log'
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

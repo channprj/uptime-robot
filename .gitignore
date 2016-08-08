@@ -88,3 +88,4 @@ ENV/
 ### Custom
 # system log
 nohup.*
+*.db

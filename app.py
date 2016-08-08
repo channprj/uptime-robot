@@ -10,10 +10,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 import database
 from module import init 
+from module import models
 
 app = Flask(__name__)
 app.config.from_pyfile('app.cfg')
 db = SQLAlchemy(app)
+db.create_all()
 
 @app.route('/')
 @app.route('/index')
@@ -22,11 +24,11 @@ def index():
 
 @app.route('/signup')
 def sign_up():
-    return init.test_print()
+    return 'sign up'
 
 @app.route('/signin')
 def sign_in():
-    return init.test_print()
+    return 'sign in' 
 
 @app.route('/dashboard')
 def dashboard():
@@ -38,5 +40,9 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    db.create_all()
+    database.init_db()
+    # user = models.User('chann@chann.kr', 'asdf', 'CHANN', '01012341234', 1)
+    # database.db_session.add(user)
+    # database.db_session.commit()
     app.run(port=8000, threaded=True, debug=True)
+
