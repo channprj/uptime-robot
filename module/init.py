@@ -3,6 +3,7 @@ import __future__
 import sys
 import httplib
 import urllib
+import models
 
 from flask import Flask
 
