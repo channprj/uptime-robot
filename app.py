@@ -1,10 +1,17 @@
 import sys
-from module import init 
+import re
+
 from flask import Flask
 from flask import render_template
 from flask import url_for
+from flask import redirect
+from flask_sqlalchemy import SQLAlchemy
+
+from module import init 
 
 app = Flask(__name__)
+app.config.from_pyfile('app.cfg')
+db = SQLAlchemy(app)
 
 @app.route('/')
 @app.route('/index')
