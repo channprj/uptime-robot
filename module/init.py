@@ -4,6 +4,7 @@ import sys
 import httplib
 import urllib
 import models
+import re
 
 from flask import Flask
 
@@ -33,6 +34,12 @@ def alert_email():
 
 def alert_sms():
     pass
+
+def is_email_address_valid(email):
+    """Validate email address using regular expression."""
+    if not re.match("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", email):
+        return False
+    return True
 
 def set_interval():
     pass
