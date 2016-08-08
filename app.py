@@ -5,8 +5,10 @@ from flask import Flask
 from flask import render_template
 from flask import url_for
 from flask import redirect
+from flask import request
 from flask_sqlalchemy import SQLAlchemy
 
+import database
 from module import init 
 
 app = Flask(__name__)
@@ -36,4 +38,5 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
+    db.create_all()
     app.run(port=8000, threaded=True, debug=True)

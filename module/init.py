@@ -6,8 +6,6 @@ import urllib
 import models
 import re
 
-from flask import Flask
-
 class HTTPChecker(object):
     """docstring for HTTPChecker"""
     def __init__(self, arg):
@@ -24,7 +22,7 @@ def send_http_request(url):
     res = conn.getresponse()
     status = res.status
     # status = res.getheaders()
-    return status, res.getheaders()
+    return status
 
 def send_ping_request():
     pass

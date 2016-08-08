@@ -25,7 +25,6 @@ class User(db.Model):
     monitor = db.relationship('Monitor', backref='monitor', lazy='dynamic')
     alertlog = db.relationship('AlertLog', backref='alertlog', lazy='dynamic')
 
-
 class Monitor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event = db.Column(db.Boolean)
