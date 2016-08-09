@@ -6,7 +6,9 @@ from flask import render_template
 from flask import url_for
 from flask import redirect
 from flask import request
+from flask import flash
 from flask_sqlalchemy import SQLAlchemy
+from module.forms import SignUpForm
 
 import database
 from module import init 
@@ -24,7 +26,9 @@ def index():
 
 @app.route('/signup')
 def sign_up():
-    return 'sign up'
+    flash('All fields are required')
+    form = SignUpForm()
+    return render_template('sign_up.html', form=form)
 
 @app.route('/signin')
 def sign_in():
