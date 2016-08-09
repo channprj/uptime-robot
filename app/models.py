@@ -1,11 +1,8 @@
 # models.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from database import Base
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://test.db'
-db = SQLAlchemy(app)
+from app import db
+from app import app
 
 ### SQLAlchemy Data Type
 ### Integer: an integer
@@ -16,7 +13,7 @@ db = SQLAlchemy(app)
 ### PickleType: stores a pickled Python object
 ### LargeBinary: stores large arbitrary binary data
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email_id = db.Column(db.String(120), unique=True)
@@ -34,7 +31,11 @@ class User(Base):
         self.phone = phone
         self.is_admin = is_admin
 
-class Monitor(Base):
+    # __repr__ method tells Python how to print objects of this class. We will use this for debugging.
+    def __repr__(self):
+        return '<User %r>' % (self.email_id)
+
+class Monitor(db.Model):
     __tablename__ = 'monitor'
     id = db.Column(db.Integer, primary_key=True)
     event = db.Column(db.Boolean)
@@ -44,13 +45,13 @@ class Monitor(Base):
     monitor_log = db.relationship('MonitorLog', backref='monitor_log', lazy='dynamic')
     alert_log = db.relationship('AlertLog', backref='alert_log', lazy='dynamic')
 
-class MonitorLog(Base):
+class MonitorLog(db.Model):
     __tablename__ = 'monitor_log'
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Integer)
     monitor_id = db.Column(db.Integer, db.ForeignKey('monitor.id'))
 
-class AlertLog(Base):
+class AlertLog(db.Model):
     __tablename__ = 'alert_log'
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(20))

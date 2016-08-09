@@ -3,10 +3,7 @@ import __future__
 import sys
 import httplib
 import urllib
-import models
 import re
-
-import database
 
 class HTTPChecker(object):
     """docstring for HTTPChecker"""
