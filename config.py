@@ -12,8 +12,9 @@ if os.environ.get('DB_URI') is None:
 else:
     SQLALCHEMY_DATABASE_URI = os.environ['DB_URI']
 SQLALCHEMY_RECORD_QUERIES = True
-SQLALCHEMY_MIGRATE_REPO = os.path.join(BASEDIR, 'migrate')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(BASEDIR, 'migrates')
 SQLALCHEMY_ECHO = False
+SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # Debugging
 DEBUG = True
