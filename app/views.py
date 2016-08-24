@@ -6,10 +6,10 @@ from flask import flash
 from flask import redirect
 from flask import request
 from flask import g
-from flask.ext.login import login_user
-from flask.ext.login import logout_user
-from flask.ext.login import current_user
-from flask.ext.login import login_required
+from flask_login import login_user
+from flask_login import logout_user
+from flask_login import current_user
+from flask_login import login_required
 
 from app import app
 from app import db

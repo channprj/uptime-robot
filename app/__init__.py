@@ -8,13 +8,12 @@ import re
 
 from flask import Flask
 from flask import render_template
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
 from flask import url_for
 from flask import redirect
 from flask import request
 from flask import flash
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 from app.forms import SignUpForm
 from app import init
@@ -22,6 +21,7 @@ from app import init
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
+db.create_all()
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'signin'
