@@ -24,10 +24,10 @@ class User(db.Model):
     monitor = db.relationship('Monitor', backref='monitor', lazy='dynamic')
     alertlog = db.relationship('AlertLog', backref='alertlog', lazy='dynamic')
 
-    def __init__(self, name=None, email_id=None, password=None, phone=None, is_admin=None):
-        self.name = name
+    def __init__(self, email_id, password, name, phone, is_admin=0):
         self.email_id = email_id
         self.password = password
+        self.name = name
         self.phone = phone
         self.is_admin = is_admin
 

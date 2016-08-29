@@ -1,7 +1,7 @@
 # init.py
 import __future__
 import sys
-import httplib
+import http.client
 import urllib
 import re
 
@@ -16,7 +16,7 @@ def test_print():
     return str(res)
 
 def send_http_request(url):
-    conn = httplib.HTTPConnection(url)
+    conn = http.client.HTTPConnection(url)
     conn.request('HEAD', '')
     res = conn.getresponse()
     status = res.status
