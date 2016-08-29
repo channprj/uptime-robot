@@ -35,8 +35,10 @@ def dashboard():
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
-        user = User(form.email_id.data, form.password.data, form.name.data, form.phone.data)
-        db_session.add(user)
+        #user = User(form.email_id.data, form.password.data, form.name.data, form.phone.data)
+        user = User(request.form['email_id'], request.form['password'], request.form['name'], request.form['phone'])
+        db.session.add(user)
+        db.session.commit()
         flash('Hello, %s, Wait seconds... ' % form.name)
         flash('User has been saved.')
         
